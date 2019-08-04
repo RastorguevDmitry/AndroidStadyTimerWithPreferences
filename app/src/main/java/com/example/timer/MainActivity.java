@@ -2,6 +2,7 @@ package com.example.timer;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.icu.text.UnicodeSetSpanner;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -153,7 +155,7 @@ public class MainActivity extends AppCompatActivity implements SharedPreferences
 
     private void setIntervalFromSharedPreferences(SharedPreferences sharedPreferences) {
         defaultInterval = Integer.valueOf(sharedPreferences.getString("timer_default_interval", "30"));
-        textView.setText("00:" + defaultInterval);
+        updateTimer(defaultInterval * 1000);
         seekBar.setProgress(defaultInterval);
     }
 
